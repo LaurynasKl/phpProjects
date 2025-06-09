@@ -49,8 +49,27 @@ function allTasks()
 // allTasks();
 
 
-function oneTask($argv){
+function oneTask($argv)
+{
     $tasks = json_decode(file_get_contents(__DIR__ . '/data/tasks.json'), true);
-
+    foreach ($tasks as $task) {
+        if ($argv[1] === 'list' && $task['id'] == $argv[2]) {
+            echo 'ID: ' . $task['id'] . ' TASK: ' . $task['task'] .  ' STATUS: ' . $task['status'] . "\n";
+        } else {
+            echo 'Klaida, tokios uzduoties nera';
+            exit();
+        }
+    }
 }
-oneTask($argv);
+// oneTask($argv);
+
+function delete($argv)
+{
+    $tasks = json_decode(file_get_contents(__DIR__ . '/data/tasks.json'), true);
+    foreach ($tasks as $task) {
+        if ($argv[1] === 'delete' && $task['id'] == $argv[2]) {
+            unset($task['id']);
+        }
+    }
+}
+delete($argv);
