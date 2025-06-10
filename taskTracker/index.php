@@ -16,6 +16,9 @@ switch ($argv[1]) {
     case 'add':
         add($argv);
         break;
+    case 'update':
+        update($argv);
+        break;
 
     case 'list':
         listTasks($argv);
@@ -33,6 +36,18 @@ switch ($argv[1]) {
         cli($argc);
         break;
 }
+
+function update($argv){
+    if ($argv[1] === 'update'){
+
+        
+
+
+
+
+    }
+}
+
 
 function add($argv)
 {
