@@ -6,10 +6,11 @@ function cli($argc)
         echo "Naudojimas:\n";
         echo "php task.php add \"užduoties tekstas\"\n";
         echo "php task.php list\n";
+        echo "php task.php oneTask [numeris]\n";
+        echo "php task.php delete [numeris]\n";
         echo "php task.php done [numeris]\n";
     }
 };
-// cli($argc);
 
 switch ($argv[1]) {
     case 'add':
@@ -59,9 +60,9 @@ function add($argv)
         ];
 
         file_put_contents(__DIR__ . '/data/tasks.json', json_encode($tasks, JSON_PRETTY_PRINT));
+        echo "Task added successfully (id: $taskId)";
     }
 }
-// add($argv);
 
 function listTasks($argv)
 {
@@ -73,9 +74,8 @@ function listTasks($argv)
         }
     }
 }
-// listTasks($argv);
 
-
+// patvarkyti kad jeigu nepasirenki argumento ismestu pranesima kad nepasirinktas id
 function oneTask($argv)
 {
     $tasks = json_decode(file_get_contents(__DIR__ . '/data/tasks.json'), true);
@@ -93,6 +93,7 @@ function oneTask($argv)
 }
 // oneTask($argv);
 
+// patvarkyti kad jeigu nepasirenki argumento ismestu pranesima kad nepasirinktas id
 function delete($argv)
 {
     if ($argv[1] === 'delete') {
