@@ -1,22 +1,17 @@
-[
-    {
+{
+    "0": {
         "id": 1,
         "task": "a",
         "status": "in-progress"
     },
-    {
-        "id": 2,
-        "task": "a",
-        "status": "in-progress"
-    },
-    {
+    "2": {
         "id": 3,
-        "task": "a",
+        "task": "c",
         "status": "in-progress"
     },
-    {
+    "4": {
         "id": 4,
-        "task": "a",
+        "task": "skalbiniai",
         "status": "in-progress"
     }
-]
+}
