@@ -1,17 +1,27 @@
-{
-    "0": {
+[
+    {
         "id": 1,
-        "task": "a",
+        "task": "labasa",
         "status": "in-progress"
     },
-    "2": {
-        "id": 3,
-        "task": "c",
+    {
+        "id": 2,
+        "task": "labasaa",
         "status": "in-progress"
     },
-    "4": {
+    {
         "id": 4,
-        "task": "skalbiniai",
+        "task": "labass",
+        "status": "in-progress"
+    },
+    {
+        "id": 5,
+        "task": "labassasd",
+        "status": "in-progress"
+    },
+    {
+        "id": 6,
+        "task": "labassasderfr",
         "status": "in-progress"
     }
-}
+]

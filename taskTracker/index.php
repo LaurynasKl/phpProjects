@@ -44,17 +44,20 @@ function add($argv)
 
         $tasks = json_decode(file_get_contents(__DIR__ . '/data/tasks.json'), true);
 
-        $taskId = 1;
+        $newId = 0;
         foreach ($tasks as $task) {
-            if ($task['id'] >= $taskId) {
-                $taskId++;
+            if ($task['id'] > $newId) {
+                $newId = $task['id'];
             }
         }
+        $taskId = $newId + 1;
+
         $tasks[] = [
             'id' => $taskId,
             'task' => $argv[2],
             'status' => 'in-progress'
         ];
+
         file_put_contents(__DIR__ . '/data/tasks.json', json_encode($tasks, JSON_PRETTY_PRINT));
     }
 }
@@ -92,13 +95,15 @@ function oneTask($argv)
 
 function delete($argv)
 {
-    $tasks = json_decode(file_get_contents(__DIR__ . '/data/tasks.json'), true);
-    foreach ($tasks as $key => $task) {
-        if ($task['id'] === (int)$argv[1]) {
-            unset($tasks[$key]);
+    if ($argv[1] === 'delete') {
+        $tasks = json_decode(file_get_contents(__DIR__ . '/data/tasks.json'), true);
+        foreach ($tasks as $key => $task) {
+            if ($task['id'] === (int)$argv[2]) {
+                unset($tasks[$key]);
+            }
         }
+        $tasks = array_values($tasks);
+        file_put_contents(__DIR__ . '/data/tasks.json', json_encode($tasks, JSON_PRETTY_PRINT));
     }
-    array_values($tasks);
-    file_put_contents(__DIR__ . '/data/tasks.json', json_encode($tasks, JSON_PRETTY_PRINT));
 }
 // delete($argv);
