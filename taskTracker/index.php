@@ -11,41 +11,45 @@ function cli($argc)
         echo "php task.php done [numeris]\n";
     }
 };
+// if ($argc < 2) {
+//     cli($argc);
+// } else {
+//     switch ($argv[1]) {
+//         case 'add':
+//             add($argv);
+//             break;
+//         case 'update':
+//             update($argv);
+//             break;
 
-switch ($argv[1]) {
-    case 'add':
-        add($argv);
-        break;
-    case 'update':
-        update($argv);
-        break;
+//         case 'list':
+//             listTasks($argv);
+//             break;
 
-    case 'list':
-        listTasks($argv);
-        break;
+//         case 'oneTask':
+//             oneTask($argv);
+//             break;
 
-    case 'oneTask':
-        oneTask($argv);
-        break;
+//         case 'delete':
+//             delete($argv);
+//             break;
 
-    case 'delete':
-        delete($argv);
-        break;
-
-    default:
-        cli($argc);
-        break;
-}
-
-function update($argv){
-    if ($argv[1] === 'update'){
-
-        
+//     }
+// }
 
 
+function update($argv)
+{
+    $tasks = json_decode(file_get_contents(__DIR__ . '/data/tasks.json'), true);
 
-
+    foreach ($tasks as $key => $task) {
+        if ($argv[1] === 'update' && $task['id'] == $argv[2]) {
+            $tasks[$key]['task'] = $argv[3];
+            echo $task['task'];
+            // echo "Task updates successfully";
+        }
     }
+    file_put_contents(__DIR__ . '/data/tasks.json', json_encode($tasks, JSON_PRETTY_PRINT));
 }
 
 
@@ -123,3 +127,4 @@ function delete($argv)
     }
 }
 // delete($argv);
+
