@@ -165,3 +165,7 @@ function taskStatus($argv)
         }
     }
 }
+
+
+
+// funkcija kuri pakeicia statusa pagal id kuri daro
