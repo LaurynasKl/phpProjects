@@ -67,8 +67,18 @@ if ($argc < 2) {
                 echo 'blogai';
                 break;
             }
+        case $argv[1]:
+            if ($argc >= 3) {
+                changeStatus($argv);
+                break;
+            } else {
+                echo 'blogai';
+                break;
+            }
     }
 }
+
+
 
 function add($argv)
 {
@@ -166,6 +176,19 @@ function taskStatus($argv)
     }
 }
 
+function changeStatus($argv)
+{
+    if ($argv[2] === 'done' || $argv[2] === 'todo' || $argv[2] === 'in-progress') {
 
-
-// funkcija kuri pakeicia statusa pagal id kuri daro
+        $tasks = json_decode(file_get_contents(__DIR__ . '/data/tasks.json'), true);
+        foreach ($tasks as $key => $task) {
+            if ($task['id'] == $argv[1]) {
+                $tasks[$key]['status'] = $argv[2];
+                echo 'Status changed';
+            }
+        }
+        file_put_contents(__DIR__ . '/data/tasks.json', json_encode($tasks, JSON_PRETTY_PRINT));
+    } else {
+        echo 'Wrong status name';
+    }
+}
